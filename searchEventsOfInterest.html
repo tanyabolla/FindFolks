@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<a href="/home">Go To Homepage</a>
+
+<h1>Past Events You Signed Up For:</h1>
+
+{% if pastUserEvents %}
+<table border="1">
+	<th>Organized by</th>
+	<th>Event ID</th>
+	<th>Title</th>
+	<th>Description</th>
+	<th>Starts at</th>
+	<th>Ends at</th>
+	<th>Locaion</th>
+	<th>Zipcode</th>
+	<th>Rating</th>
+
+	{% for event in pastUserEvents %}
+		<tr>
+			<td>{{event.group_id}}</td>
+			<td>{{event.event_id}}</td>
+			<td>{{event.title}}</td>
+			<td>{{event.description}}</td>
+			<td>{{event.start_time}}</td>
+			<td>{{event.end_time}}</td>
+			<td>{{event.location_name}}</td>
+			<td>{{event.zipcode}}</td>
+			<td>{{event.rating}} change:
+				<form action = '/changeRating' method = "POST">
+					<select name="rating" id="rating" >
+						{% for i in (0,1,2,3,4,5) %}
+							<option>{{event.title}}: {{i}}</option>
+						{% endfor %}
+					</select>
+					<button type="submit" name="submit" value="submit">submit</button>
+				</form>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+{% endif %}
+
+{% if not pastUserEvents %}
+<h3>You have no past events</h3>
+{% endif %}
+
+<h1>Future Events You Are Signed Up For:</h1>
+
+{% if userEvents %}
+
+<table border="1">
+	<th>Organized by</th>
+	<th>Event ID</th>
+	<th>Title</th>
+	<th>Description</th>
+	<th>Starts at</th>
+	<th>Ends at</th>
+	<th>Locaion</th>
+	<th>Zipcode</th>
+
+	{% for event in userEvents %}
+		<tr>
+			<td>{{event.group_id}}</td>
+			<td>{{event.event_id}}</td>
+			<td>{{event.title}}</td>
+			<td>{{event.description}}</td>
+			<td>{{event.start_time}}</td>
+			<td>{{event.end_time}}</td>
+			<td>{{event.location_name}}</td>
+			<td>{{event.zipcode}}</td>
+		</tr>
+	{% endfor %}
+</table>
+{% endif %}
+
+{% if not userEvents%}
+<h3>You ar not signed up for any events</h3>
+{% endif %}
+
+</br>
+
+<h1>Interesting Events You are not signed up for:</h1>
+{% if interestingEvents %}
+<table border="1">
+	<th>Organized by</th>
+	<th>Event ID</th>
+	<th>Title</th>
+	<th>Description</th>
+	<th>Starts at</th>
+	<th>Ends at</th>
+	<th>Locaion</th>
+	<th>Zipcode</th>
+	<th></th>
+	
+	{% for event in interestingEvents %}
+		<tr>
+			<td>{{event.group_id}}</td>
+			<td>{{event.event_id}}</td>
+			<td>{{event.title}}</td>
+			<td>{{event.description}}</td>
+			<td>{{event.start_time}}</td>
+			<td>{{event.end_time}}</td>
+			<td>{{event.location_name}}</td>
+			<td>{{event.zipcode}}</td>
+			<td><a href="/signUpForEvent">Click Here To Sign Up</a></td>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endif %}
+
+{% if not interestingEvents %}
+	<h4>There are no events of your interests that you are not signed up for</h4>
+{% endif %}
+
+</body>
+</html>

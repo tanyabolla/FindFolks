@@ -1,0 +1,37 @@
+<html>
+<head>
+</head>
+<body style="text-align: center">
+<!--List all existing friends, if any-->
+	<h3>My friends</h3>
+	{% if friends %}
+		{% for friend in friends %}
+			<ul>
+				<li>{{friend.friend_to}} <a href="/unfriend">unfriend</a></li>
+			</ul>
+		{% endfor %}
+	{% endif %}
+	
+	{% if not friends %}
+		<p>No friends listed.</p>
+	{% endif %}
+<!--Add friends by choosing an option and clicking submit-->	
+	<h3>Add some friends:</h3>
+	{% if notFriends %}
+		<form action="/insertFriends" method="POST">
+			{% for friend in notFriends %}
+			
+				<input type="radio" name="friend" value={{friend.username}}><p>{{friend.username}}</p>
+		
+			{% endfor %}
+			<input type="submit" value="Submit"/>
+		</form>
+	{% endif %}
+	
+	{% if not notFriends %}
+		<p>You are friends with everyone!</p>
+	{% endif %}
+
+	
+</body>
+</html>

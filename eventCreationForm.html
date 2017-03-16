@@ -1,0 +1,30 @@
+<html>
+<head>
+</head>
+<body style="text-align: center">
+
+<a href="/home">Go To Homepage</a>
+
+<h1>Create Event Form</h1>
+<form action="/insertEvent" method="POST">
+	<p>Title of Event:</p>
+	<input type="text" name="title" required/>
+	<p>Description</p>
+	<input type="text" name="description" required/>
+	<p>Start Time:</p>
+	<input type="datetime-local" name="startTime" required/>
+	<p>End Time:</p>
+	<input type="datetime-local" name="endTime" required/>
+	<p>Location and Zipcode:</p>
+	<select name="location" id="location">
+		{% for location in locations %}
+			<option>{{location.location_name}}, {{location.zipcode}}</option>
+		{%endfor %}
+	</select>
+	</br></br>
+	<input type="submit" value="Submit"/>
+	<input type="reset" value="Reset"/>
+</form>
+
+</body>
+</html>

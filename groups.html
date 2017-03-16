@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Groups</title>
+</head>
+<body>
+
+<a href="/home">Go To Homepage</a>
+
+{% if groups %}
+	<h2>Groups:</h2>
+	<table border="1">
+		<th>ID</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Created By</th>
+		{% for group in groups %}
+			<tr>
+				<td>{{group.group_id}}</td>
+				<td>{{group.group_name}}</td>
+				<td>{{group.description}}</td>
+				<td>{{group.creator}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+
+{% if not groups %}
+error
+{% endif %}
+
+</body>
+</html>

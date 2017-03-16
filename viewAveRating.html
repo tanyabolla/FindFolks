@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<a href="/home">Go To Homepage</a>
+
+<h2>Average ratings of your groups' events from the past 3 days:</h2>
+
+{% if eventRating  %}
+<table border = "1">
+	<th>Event ID</th>
+	<th>Title</th>
+	<th>Average Rating</th>
+	{% for event in eventRating %}
+	<tr>
+		<td>{{event.event_id}}</td>
+		<td>{{event.title}}</td>
+		<td>{{event.average_rating}}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+{% if not eventRating%}
+{% endif %}
+
+</body>
+</html>

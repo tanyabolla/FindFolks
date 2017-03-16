@@ -1,0 +1,32 @@
+<html>
+<head>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+</head>
+<body style="text-align: center">
+
+<a href="/home">Go To Homepage</a>
+
+<h1>Create Event</h1>
+{% if not groups %}
+	<p>You are not authorized to create an event for any groups.</p>
+{% endif %}
+
+{% if groups %}
+	<h4>Select a group to create an event for:</h4>
+	<form action = '/eventCreationForm' method = "POST">
+		<select name="groupToCreate" id="groupToCreate" >
+			{% for group in groups %}
+				<option>{{group.group_id}}: {{group.group_name}}</option>
+			{%endfor %}
+		</select>
+		<button type="submit" name="submit" value="submit">Submit</button>
+	</form>
+{% endif %}
+</br>
+
+</body>
+</html>

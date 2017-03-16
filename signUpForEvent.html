@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Event Sign Up</title>
+</head>
+<body>
+
+<a href="/home">Go To Homepage</a>
+
+{% if interestingEvents %}
+<form action = '/signUserUpForEvent' method = "POST">
+	<select name="event" id="event" >
+		{% for event in interestingEvents %}
+			<option>{{event.event_id}}: {{event.title}}</option>
+		{%endfor %}
+	</select>
+	<button type="submit" name="submit" value="submit">submit</button>
+</form>
+{% endif %}
+
+{% if not interestingEvents %}
+<h4>There don't seem to be any events organized by groups you share an interest with. You may only sign up for events organized by groups you share an interest with.</h4>
+{% endif %}
+
+</body>
+</html>

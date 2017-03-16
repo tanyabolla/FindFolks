@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<a href="/home">Go To Homepage</a>
+
+<body>
+{% if not message %}
+	<a href="/login">Login</a>
+	<a href="/register">Register</a>
+{% endif %}
+
+{% if message %}
+	<a href="/logout">Logout</a>
+	<a href="/remove_account">Remove Account</a>
+	<p class="message">You are logged in {{message}}. You have {{num}} follower(s)</p> </br>
+	<a href="/tweets">View your tweets</a> </br>
+	<a href="/find_people">Find people to follow</a> </br>
+	<a href="/unfollow">Unfollow someone</a> </br>
+	<a href="/view_followed">View people you have followed</a> </br>
+	</br>
+
+{% endif %}
+</br>
+
+{% if not interests %}
+	<p>There don't seem to be any interests listed.</p>
+{% endif %}
+{% if interests %}
+	<h4>Select an interest to see groups share them:</h4>
+	<form action = '/groupsOfInterest' method = "POST">
+		<select name="interest" id="interest" >
+			{% for interest in interests %}
+				<option>{{interest.keyword}}, {{interest.category}}</option>
+			{%endfor %}
+		</select>
+		<button type="submit" name="submit" value="submit">submit</button>
+	</form>
+{% endif %}
+</br>
+
+{% if upcomingEvents %}
+	<h3>Here are some upcoming events</h3>
+	<table border="1">
+		<th>Name</th>
+		<th>Description</th>
+		<th>Start Time</th>
+		<th>End Time</th>
+		<th>Location</th>
+		{% for event in upcomingEvents %}
+			<tr>
+				<td>{{event.title}}</td>
+				<td>{{event.description}}</td>
+				<td>{{event.start_time}}</td>
+				<td>{{event.end_time}}</td>
+				<td>{{event.location_name}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+
+{% if not upcomingEvents %}
+	<p>There are no events happening in the near future</p>
+{% endif %}
+</br>
+
+<a href="/groups">click here to view groups</a> <!--make this for logged in users only-->
+
+</body>
+
+</html>

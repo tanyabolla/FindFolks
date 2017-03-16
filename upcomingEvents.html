@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>My homepage</title>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+</head>
+<body>
+
+<a href="/home">Go To Homepage</a>
+
+{% if events %}
+	<h3>My upcoming events</h3>
+	<table>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Start Time</th>
+		<th>End Time</th>
+		<th>Location</th>
+		{% for event in events %}
+			<tr>
+				<td>{{event.title}}</td>
+				<td>{{event.description}}</td>
+				<td>{{event.start_time}}</td>
+				<td>{{event.end_time}}</td>
+				<td>{{event.location_name}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+
+{% if not events %}
+	<p>There are no events happening in the near future</p>
+{% endif %}
+
+{% if not groups %}
+	<p>There don't seem to be any groups listed.</p>
+{% endif %}
+{% if groups %}
+	<h4>Select a group you are invloved in to see its events:</h4>
+	<form action = '/eventsOfGroups' method = "POST">
+		<select name="groups" id="groups" >
+			{% for group in groups %}
+				<option>{{group.group_name}}</option>
+			{%endfor %}
+		</select>
+		<button type="submit" name="submit" value="submit">Submit</button>
+	</form>
+{% endif %}
+</br>
+
+<a href="/logout">Logout</a>
+</body>
+</html>

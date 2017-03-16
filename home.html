@@ -1,0 +1,51 @@
+<!--Shows the home page, shows groups user belongs to has links to other use cases-->
+<html>
+<head>
+<title>My homepage</title>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+</head>
+<body>
+<form action="/home" method="POST">
+	<h1>Welcome {{username}}</h1> 
+</form>
+
+<h3>Groups you are a member of:</h3>
+
+{% if groups %}
+	<table border="1">	
+		<th>Groups I belong to:</th>
+		{% for group in groups %}
+		<tr>
+			<td>{{group.group_name}}</td>
+		</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% if not groups %}
+<h4>You are not a memeber of any groups</h4></br>
+{% endif %}</br></br>
+
+<a href="/makeFriends">My Friends</a></br></br>
+
+<a href="/friendsEvent">View Your Friends' Events</a></br></br>
+
+<a href = "/searchEventsOfInterest">View Your Events and See Events You May be Interested in</a></br></br>
+
+<a href="/upcomingEvents">My Upcoming Events</a></br></br>
+
+<a href="/viewAveRating">View Average Rating for Your Groups' Past Events</a></br></br>
+
+<a href="/signUpForEvent">Sign Up For an Event</a></br></br>
+
+<a href="/createEvent">Create a new event</a></br></br>
+
+<a href="/logout">Logout</a></br></br>
+
+
+</body>
+</html>

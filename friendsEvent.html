@@ -1,0 +1,16 @@
+<html>
+<head>
+</head>
+<body style="text-align: center">
+	<h1>Friends' events</h1>
+	<table border = "1">
+		<th>Friend</th>
+		<th>Event they are attending</th>
+		{% for attendee in friendsEvents %}
+		<tr>
+			<td>{{attendee.username}}</td>
+			<td>{{attendee.title}}</td>
+		</tr>
+		{% endfor %}
+</body>
+</html>

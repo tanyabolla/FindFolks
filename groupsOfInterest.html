@@ -1,0 +1,31 @@
+<HTML>
+<head>
+	<title>List of Groups</title>
+</head>
+<body>
+
+<a href="/home">Go To Homepage</a>
+
+{% if groups %}
+	<table border="1">
+		<th>ID</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Creator</th>
+	{% for group in groups %}
+		<tr>
+			<td>{{group.group_id}}</td>
+			<td>{{group.group_name}}</td>
+			<td>{{group.description}}</td>
+			<td>{{group.creator}}</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endif %}
+	
+{% if not groups %}
+	<p>No Groups Of That Interest, Sorry</p>
+{% endif %}	
+
+<a href="/">Go Back to Index Page</a>
+</body>
